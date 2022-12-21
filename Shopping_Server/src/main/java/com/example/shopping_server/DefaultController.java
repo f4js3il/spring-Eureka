@@ -33,15 +33,15 @@ public class DefaultController {
 
 
 
-    @GetMapping("/**")
-    public <T> ResponseEntity<T> getResponse(HttpServletRequest httpServletRequest) {
-        List<String> serverDetails = Arrays.asList(httpServletRequest.getRequestURI().split("shopping-server")[1].split("/"));
-        PeerAwareInstanceRegistry registry = EurekaServerContextHolder.getInstance().getServerContext().getRegistry();
-        AtomicLong instanceId = registry.getApplications().getNextIndex(serverDetails.get(1).toUpperCase(), false);
-        Application application = registry.getApplication(serverDetails.get(1).toUpperCase());
-        InstanceInfo instanceInfo = application.getInstances().get(Integer.parseInt(String.valueOf(instanceId)));
-        List<String> uriComponents =  serverDetails.subList(2,serverDetails.size());
-        String urlString = String.join("/",uriComponents);
-        return (ResponseEntity<T>) restTemplate.getForEntity(instanceInfo.getHomePageUrl()+urlString, String.class);
-    }
+//    @GetMapping("/**")
+//    public <T> ResponseEntity<T> getResponse(HttpServletRequest httpServletRequest) {
+//        List<String> serverDetails = Arrays.asList(httpServletRequest.getRequestURI().split("shopping-server")[1].split("/"));
+//        PeerAwareInstanceRegistry registry = EurekaServerContextHolder.getInstance().getServerContext().getRegistry();
+//        AtomicLong instanceId = registry.getApplications().getNextIndex(serverDetails.get(1).toUpperCase(), false);
+//        Application application = registry.getApplication(serverDetails.get(1).toUpperCase());
+//        InstanceInfo instanceInfo = application.getInstances().get(Integer.parseInt(String.valueOf(instanceId)));
+//        List<String> uriComponents =  serverDetails.subList(2,serverDetails.size());
+//        String urlString = String.join("/",uriComponents);
+//        return (ResponseEntity<T>) restTemplate.getForEntity(instanceInfo.getHomePageUrl()+urlString, String.class);
+//    }
 }

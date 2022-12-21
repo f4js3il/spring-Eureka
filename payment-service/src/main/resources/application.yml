@@ -4,8 +4,12 @@ eureka:
     fetch-registry: true
     service-url:
       default-zone: http://localhost:8761/eureka
-server:
-  port: 9090
+    instance:
+      hostname: ${HOST_NAME}
+      instance-id: ${spring.application.name}:${instanceId:${random.value}}
+
+#server:
+#  port: 0
 spring:
   application:
     name: payment-service
